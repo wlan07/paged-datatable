@@ -21,8 +21,7 @@ final class _Header<K extends Comparable<K>, T> extends StatefulWidget {
   State<StatefulWidget> createState() => _HeaderState<K, T>();
 }
 
-final class _HeaderState<K extends Comparable<K>, T>
-    extends State<_Header<K, T>> {
+final class _HeaderState<K extends Comparable<K>, T> extends State<_Header<K, T>> {
   late _TableState tableState;
   SortModel? sortModel;
 
@@ -54,17 +53,13 @@ final class _HeaderState<K extends Comparable<K>, T>
                 Expanded(
                   child: _ScrollableColumns(
                       controller: widget.horizontalController,
-                      children: columns
-                          .map((e) => SliverToBoxAdapter(child: e))
-                          .toList(growable: false)),
+                      children: columns.map((e) => SliverToBoxAdapter(child: e)).toList(growable: false)),
                 ),
               ],
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: tableState == _TableState.fetching
-                  ? const LinearProgressIndicator()
-                  : const SizedBox.shrink(),
+              child: tableState == _TableState.fetching ? const LinearProgressIndicator() : const SizedBox.shrink(),
             )
           ],
         ),
@@ -72,8 +67,7 @@ final class _HeaderState<K extends Comparable<K>, T>
     );
   }
 
-  List<Widget> _buildFixedColumns(
-      BuildContext context, PagedDataTableThemeData theme) {
+  List<Widget> _buildFixedColumns(BuildContext context, PagedDataTableThemeData theme) {
     final list = <Widget>[];
 
     for (int i = 0; i < widget.fixedColumnCount; i++) {
@@ -84,8 +78,7 @@ final class _HeaderState<K extends Comparable<K>, T>
     return list;
   }
 
-  List<Widget> _buildColumns(
-      BuildContext context, PagedDataTableThemeData theme) {
+  List<Widget> _buildColumns(BuildContext context, PagedDataTableThemeData theme) {
     final list = <Widget>[];
     for (int i = widget.fixedColumnCount; i < widget.columns.length; i++) {
       final column = widget.columns[i];
@@ -95,10 +88,10 @@ final class _HeaderState<K extends Comparable<K>, T>
     return list;
   }
 
-  Widget _buildColumn(BuildContext context, PagedDataTableThemeData theme,
-      double width, ReadOnlyTableColumn column) {
+  Widget _buildColumn(BuildContext context, PagedDataTableThemeData theme, double width, ReadOnlyTableColumn column) {
     Widget child = Container(
       padding: theme.cellPadding,
+      decoration: BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(40)),
       margin: theme.padding,
       child: column.format.transform(
         Tooltip(
@@ -128,9 +121,7 @@ final class _HeaderState<K extends Comparable<K>, T>
           children: [
             Flexible(child: child),
             IconButton(
-              icon: sortModel!.descending
-                  ? const Icon(Icons.arrow_downward)
-                  : const Icon(Icons.arrow_upward),
+              icon: sortModel!.descending ? const Icon(Icons.arrow_downward) : const Icon(Icons.arrow_upward),
               onPressed: () {
                 widget.controller.swipeSortModel(column.id);
               },
@@ -146,8 +137,7 @@ final class _HeaderState<K extends Comparable<K>, T>
   }
 
   void _onControllerChanged() {
-    if (widget.controller.sortModel != sortModel ||
-        widget.controller._state != tableState) {
+    if (widget.controller.sortModel != sortModel || widget.controller._state != tableState) {
       setState(() {
         sortModel = widget.controller.sortModel;
         tableState = widget.controller._state;
@@ -165,9 +155,11 @@ final class _HeaderState<K extends Comparable<K>, T>
 class _ScrollableColumns extends ScrollView {
   final List<Widget> children;
 
-  const _ScrollableColumns(
-      {required this.children, required ScrollController controller})
-      : super(scrollDirection: Axis.horizontal, controller: controller);
+  const _ScrollableColumns({required this.children, required ScrollController controller})
+      : super(
+          scrollDirection: Axis.horizontal,
+          controller: controller,
+        );
 
   @override
   List<Widget> buildSlivers(BuildContext context) => children;
