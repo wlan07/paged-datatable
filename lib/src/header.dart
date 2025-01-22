@@ -43,7 +43,7 @@ final class _HeaderState<K extends Comparable<K>, T> extends State<_Header<K, T>
     return SizedBox(
       height: theme.headerHeight,
       child: DefaultTextStyle(
-        style: theme.headerTextStyle,
+        style: theme.headerTextStyle ?? DefaultTextStyle.of(context).style,
         child: Stack(
           fit: StackFit.expand,
           children: [

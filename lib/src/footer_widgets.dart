@@ -96,7 +96,7 @@ class _PageSizeSelectorState<K extends Comparable<K>, T>
                       controller.pageSize = newPageSize;
                     }
                   },
-            style: theme.footerTextStyle.copyWith(fontSize: 14),
+            style: theme.footerTextStyle?.copyWith(fontSize: 14),
             decoration: const InputDecoration(
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFFD6D6D6))),

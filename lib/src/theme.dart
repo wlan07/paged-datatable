@@ -32,13 +32,13 @@ final class PagedDataTableThemeData {
   final BoxBorder cellBorderSide;
 
   /// The [TextStyle] for [Text]-like elements of a cell.
-  final TextStyle cellTextStyle;
+  final TextStyle? cellTextStyle;
 
   /// The [TextStyle] for [Text]-like elements in the header.
-  final TextStyle headerTextStyle;
+  final TextStyle? headerTextStyle;
 
   /// The [TextStyle] for [Text]-like elements in the footer.
-  final TextStyle footerTextStyle;
+  final TextStyle? footerTextStyle;
 
   /// A function that calculates the [Color] of a row.
   final Color? Function(int index)? rowColor;

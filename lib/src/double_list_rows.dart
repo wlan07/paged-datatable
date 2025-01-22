@@ -44,7 +44,7 @@ class _DoubleListRowsState<K extends Comparable<K>, T> extends State<_DoubleList
     final theme = PagedDataTableTheme.of(context);
 
     return DefaultTextStyle(
-      style: theme.cellTextStyle,
+      style: theme.cellTextStyle ?? DefaultTextStyle.of(context).style,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: Opacity(
