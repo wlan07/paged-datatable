@@ -66,6 +66,9 @@ final class PagedDataTable<K extends Comparable<K>, T> extends StatefulWidget {
   /// The list of filters to use.
   final List<TableFilter> filters;
 
+  /// whether to show/hide footer
+  final bool showFooter;
+
   const PagedDataTable({
     required this.columns,
     required this.fetcher,
@@ -79,6 +82,7 @@ final class PagedDataTable<K extends Comparable<K>, T> extends StatefulWidget {
     this.filterBarChild,
     this.filters = const <TableFilter>[],
     super.key,
+    this.showFooter = true,
   });
 
   @override
@@ -144,7 +148,8 @@ final class _PagedDataTableState<K extends Comparable<K>, T> extends State<Paged
 
             return Column(
               children: [
-                _FilterBar<K, T>(child: widget.filterBarChild),
+                if (widget.filters.isNotEmpty || widget.filterBarChild != null)
+                  _FilterBar<K, T>(child: widget.filterBarChild),
 
                 _Header(
                   controller: tableController,
@@ -178,11 +183,12 @@ final class _PagedDataTableState<K extends Comparable<K>, T> extends State<Paged
                 //     verticalController: verticalController,
                 //   ),
                 // ),
-                const Divider(height: 0, color: Color(0xFFD6D6D6)),
-                SizedBox(
-                  height: theme.footerHeight,
-                  child: widget.footer ?? DefaultFooter<K, T>(),
-                ),
+                if (widget.showFooter) const Divider(height: 0, color: Color(0xFFD6D6D6)),
+                if (widget.showFooter)
+                  SizedBox(
+                    height: theme.footerHeight,
+                    child: widget.footer ?? DefaultFooter<K, T>(),
+                  ),
               ],
             );
           },

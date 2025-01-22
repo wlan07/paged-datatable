@@ -69,10 +69,11 @@ final class PagedDataTableThemeData {
     this.filterBarHeight = 50.0,
     this.rowHeight = 52.0,
     this.selectedRow,
-    this.cellTextStyle = const TextStyle(color: Colors.black, overflow: TextOverflow.ellipsis),
-    this.headerTextStyle =
-        const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
-    this.footerTextStyle = const TextStyle(fontSize: 14, color: Colors.black),
+    this.cellTextStyle = const TextStyle(overflow: TextOverflow.ellipsis),
+    this.headerTextStyle = const TextStyle(fontWeight: FontWeight.bold, overflow: TextOverflow.ellipsis),
+    this.footerTextStyle = const TextStyle(
+      fontSize: 14,
+    ),
     this.rowColor,
     this.verticalScrollbarVisibility = true,
     this.horizontalScrollbarVisibility = true,
