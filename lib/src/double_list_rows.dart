@@ -60,7 +60,7 @@ class _DoubleListRowsState<K extends Comparable<K>, T> extends State<_DoubleList
                     primary: false,
                     controller: fixedController,
                     itemCount: widget.controller._totalItems,
-                    separatorBuilder: (_, __) => const Divider(height: 0, color: Color(0xFFD6D6D6)),
+                    separatorBuilder: (_, __) => Divider(height: 0, color: Theme.of(context).dividerColor),
                     itemBuilder: (context, index) => _FixedPartRow<K, T>(
                       index: index,
                       fixedColumnCount: widget.fixedColumnCount,
@@ -83,7 +83,7 @@ class _DoubleListRowsState<K extends Comparable<K>, T> extends State<_DoubleList
                           child: ListView.separated(
                             controller: normalController,
                             itemCount: widget.controller._totalItems,
-                            separatorBuilder: (_, __) => const Divider(height: 0, color: Color(0xFFD6D6D6)),
+                            separatorBuilder: (_, __) => Divider(height: 0, color: Theme.of(context).dividerColor),
                             itemBuilder: (context, index) => _VariablePartRow<K, T>(
                               sizes: widget.sizes,
                               index: index,
